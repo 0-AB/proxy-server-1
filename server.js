@@ -1,6 +1,7 @@
 const express = require('express')
 const puppeteer = require('puppeteer')
 const replace = require('absolutify')
+const path = require('path')
 
 const app = express()
 
@@ -8,10 +9,11 @@ app.get('/', async (req, res) => {
     const {url} = req.query
     
     if (!url) {
-        return res.send('Not url provided')
+         return res.sendFile(path.join(__dirname, '/one.html'));
     } else {
         // generate puppeteer screenshot 
         try {
+             res.sendFile(path.join(__dirname, '/load.html'));
             // If headless Chrome is not launching on Debian, use the following line instead
             // const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']})
             const browser = await puppeteer.launch()
@@ -24,11 +26,12 @@ app.get('/', async (req, res) => {
             return res.send(document)
         } catch(err) {
             console.log(err)
-            
-            return res.send(err)
+             return res.sendFile(path.join(__dirname, '/crash.html'));
+           
         }
     }
 })
 
 
-app.listen(process.env.PORT)
+app.listen(3000)
+console.log('Service started')
