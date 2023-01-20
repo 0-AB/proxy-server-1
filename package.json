@@ -6,7 +6,8 @@
   "dependencies": {
     "absolutify": "^0.1.0",
     "express": "^4.16.3",
-    "puppeteer": "^1.7.0"
+    "puppeteer": "^1.7.0",
+     "cors": "^2.8.5"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
